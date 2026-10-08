@@ -2,3 +2,4 @@
 __pycache__/
 *.py[cod]
 .idea/
+/lab01/src/dual_variant11.py

@@ -172,7 +172,6 @@ class TwoPhaseSimplex:
         if -self.table.values[-1, -1] > self.tolerance:
             return Solution("infeasible", iterations=self.iterations)
 
-        # Нулевая искусственная переменная может остаться базисной при вырождении
         for row in range(len(self.table.basis) - 1, -1, -1):
             if self.table.basis[row] not in self.form.artificial:
                 continue
