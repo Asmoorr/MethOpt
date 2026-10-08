@@ -1,0 +1,21 @@
+[project]
+name = "methopt"
+version = "0.1.0"
+readme = "README.md"
+description = "Учебные работы по методам оптимизации: линейное программирование и симплекс-метод."
+authors = [
+    {name = "asmoorr",email = "90kidex90@gmail.com"}
+]
+requires-python = ">=3.14,<4.0"
+dependencies = [
+    "numpy (>=2.5.3,<3.0.0)",
+    "scipy (>=1.18.1,<2.0.0)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
+package-mode = false
