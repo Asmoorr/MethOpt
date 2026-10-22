@@ -7,7 +7,15 @@ from dotenv import dotenv_values
 
 @dataclass(frozen=True)
 class Settings:
-    """Настройки, прочитанные из .env без изменения окружения процесса."""
+    """Строковые настройки .env после преобразования в числовые типы
+
+    :param expression: Математическое выражение от x
+    :param a: Левая граница
+    :param b: Правая граница
+    :param eps: Точность по значению функции
+    :param estimation_intervals: Число интервалов начальной сетки
+    :param max_iterations: Лимит новых точек поиска
+    """
 
     expression: str
     a: float
@@ -18,6 +26,11 @@ class Settings:
 
     @classmethod
     def read(cls, path: Path) -> "Settings":
+        """Читает обязательные параметры и проверяет их значения
+
+        :param path: Путь к локальному файлу .env
+        :return: Проверенные настройки запуска
+        """
         if not path.is_file():
             raise ValueError(f"Нет {path}. Скопируйте lab02/.env.example в lab02/.env.")
         values = dotenv_values(path, encoding="utf-8-sig", interpolate=False)
@@ -26,12 +39,17 @@ class Settings:
         if missing:
             raise ValueError("Не заданы параметры: " + ", ".join(missing))
         try:
-            result = cls(values["FUNCTION"], float(values["A"]), float(values["B"]),
-                         float(values["EPS"]), int(values["ESTIMATION_INTERVALS"]),
-                         int(values["MAX_ITERATIONS"]))
+            result = cls(
+                expression=values["FUNCTION"],
+                a=float(values["A"]),
+                b=float(values["B"]),
+                eps=float(values["EPS"]),
+                estimation_intervals=int(values["ESTIMATION_INTERVALS"]),
+                max_iterations=int(values["MAX_ITERATIONS"]),
+            )
         except (TypeError, ValueError) as error:
             raise ValueError("Проверьте числовые параметры .env; десятичный разделитель — точка.") from error
-        if not all(isfinite(x) for x in (result.a, result.b, result.eps, result.b-result.a)):
+        if not all(isfinite(x) for x in (result.a, result.b, result.eps, result.b - result.a)):
             raise ValueError("Границы, длина отрезка и EPS должны быть конечными.")
         if result.a >= result.b or result.eps <= 0:
             raise ValueError("Требуется A < B и EPS > 0.")
