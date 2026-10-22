@@ -1,14 +1,48 @@
-# Работа 1. Линейное программирование
+<div align="center">
 
-Вариант 11. Симплекс-метод
+![Фиолетовая волна](https://capsule-render.vercel.app/api?type=waving&color=8B5CF6&height=100&section=header)
 
-Запуск из корня проекта: `poetry run python lab01/src/variant11.py`
+# 💜 Симплекс-метод
 
-- `src/variant11.py` - линейный сценарий: постановка варианта, решение, вывод таблиц и проверка SciPy
-- `src/models.py` - dataclass-классы задачи, канонической формы, снимка таблицы и результата
-- `src/simplex.py` - реализация симплекс-метода
-- `src/console_tables.py` - оформление таблиц через Rich
+### Лабораторная работа № 1 · Вариант 11
 
-При запуске выводятся все таблицы и сравнение с SciPy
+`Линейное программирование` · `Две фазы` · `Симплекс-таблицы`
 
-Отчёт: [Трикула симплекс вариант 11](<report/Трикула симплекс вариант 11 итоговый.pdf>).
+Собственная реализация **двухфазного симплекс-метода** на Python.<br />
+Пошаговое решение задачи и сравнение результата с **SciPy**.
+
+![Python](https://img.shields.io/badge/Python-8B5CF6?style=for-the-badge&logo=python&logoColor=white)
+![NumPy](https://img.shields.io/badge/NumPy-A78BFA?style=for-the-badge&logo=numpy&logoColor=white)
+![SciPy](https://img.shields.io/badge/SciPy-7C3AED?style=for-the-badge&logo=scipy&logoColor=white)
+![Rich](https://img.shields.io/badge/Rich-C4B5FD?style=for-the-badge&logoColor=white)
+
+### 📖 Отчёт
+
+[Постановка задачи, ход решения и результаты](<report/Трикула симплекс вариант 11 итоговый.pdf>)
+
+</div>
+
+### Что делает программа
+
+- Приводит задачу к канонической форме и находит начальный допустимый базис.
+- Выполняет симплекс-итерации и показывает таблицы в консоли.
+- Выводит найденное решение и сравнивает его с `scipy.optimize.linprog`.
+
+### Запуск
+
+Из корня репозитория, с Python 3.14 и Poetry:
+
+```powershell
+poetry install
+poetry run python lab01/src/variant11.py
+```
+
+Условия варианта заданы в [сценарии запуска](src/variant11.py), алгоритм — в [simplex.py](src/simplex.py).
+
+<div align="center">
+
+<sub>Артём Трикула · Методы оптимизации · МетОпт 1.3</sub>
+
+![Фиолетовая волна](https://capsule-render.vercel.app/api?type=waving&color=8B5CF6&height=100&section=footer)
+
+</div>
